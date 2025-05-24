@@ -1,30 +1,32 @@
 package com.example.bookstore.entity;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+import lombok.*;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 @Entity
 @Table(name = "books")
-@Getter 
-@Setter 
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Book {
- @Id 
- @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	 
-private String title ;
-private String author ;
-private LocalDate year;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NotBlank(message = "Title boş ola bilməz")
+    @Size(min = 2, max = 100, message = "Title 2-100 simvol arasında olmalıdır")
+    private String title;
+
+    @NotBlank(message = "Author boş ola bilməz")
+    @Size(min = 2, max = 100, message = "Author 2-100 simvol arasında olmalıdır")
+    private String author;
+
+    @NotNull(message = "Year boş ola bilməz")
+    @PastOrPresent(message = "Year keçmiş və ya indiki tarix olmalıdır")
+    private LocalDate year;
 }
