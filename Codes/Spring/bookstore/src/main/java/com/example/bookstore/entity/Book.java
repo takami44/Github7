@@ -29,4 +29,3 @@ public class Book {
     @NotNull(message = "Year boş ola bilməz")
     @PastOrPresent(message = "Year keçmiş və ya indiki tarix olmalıdır")
     private LocalDate year;
-}
