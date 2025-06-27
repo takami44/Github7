@@ -7,24 +7,24 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.Book.dto.BookRequestdto;
 import com.example.Book.dto.UserRequestDto;
+import com.example.Book.service.BookService;
 import com.example.Book.service.UserService;
 
 @RestController
-@RequestMapping(path = "/auth")
+@RequestMapping(path = "/books")
 @CrossOrigin(origins = "*")
+                     
+public class BookController {
+@Autowired
+private BookService bookservice;
 
-public class AuthController {
-	@Autowired
-	private UserService userService;
+
+@PostMapping(path = "/create")
+public void userCreate(@RequestBody BookRequestdto dto) {
 	
-
-	@PostMapping(path = "/register")
-	public void userCreate(@RequestBody UserRequestDto dto) {
-		userService.create(dto);
-	}
-	@PostMapping(path = "/login")
-	public String userLogin(@RequestBody UserRequestDto dto) {
-	return 	userService.login(dto);
-	}
+bookservice.register(dto);	
+	
+}
 }
