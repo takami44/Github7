@@ -12,7 +12,7 @@ import lombok.Setter;
 public class UserRequestDto {
 	private Integer id;
 	private String name;
-	private  String surname;
+	private String surname;
 	private String username;
 	private String password;
 	private String gmail;
